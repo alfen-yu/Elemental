@@ -15,15 +15,15 @@ bool Game::init(const char *title, int xpos, int ypos, int width, int height, in
         {
             renderer = SDL_CreateRenderer(window, -1, 0);
             // surface is run on processor, texture is run on GPU therefore faster
-            SDL_Surface *surface = SDL_LoadBMP("assests/spacebmp.bmp"); // surface object
-            texture = SDL_CreateTextureFromSurface(renderer, surface);  // creates a texture from a surface
-            SDL_FreeSurface(surface);
-            SDL_QueryTexture(texture, NULL, NULL, &srcRect.w, &srcRect.h);
-            srcRect.w = srcRect.h = 50;
+            surface = SDL_LoadBMP("assests/mainPlayer.bmp");   // surface object
+            texture = SDL_CreateTextureFromSurface(renderer, surface); // creates a texture from a surface
+            srcRect.w = 32;
+            srcRect.h = 48;
             destRect.x = srcRect.x = 0;
             destRect.y = srcRect.y = 0;
             destRect.w = srcRect.w;
             destRect.h = srcRect.h;
+
         }
         else
         {
@@ -69,6 +69,7 @@ void Game::render()
         SDL_SetRenderDrawColor(renderer, 100, 100, 100, 255);   // gives the color to the renderer
         SDL_RenderClear(renderer);                              // cleans the renderer to draw the color
         SDL_RenderCopy(renderer, texture, &srcRect, &destRect); // copy the image to the render target
+        // SDL_RenderCopy(renderer, texture, NULL, NULL); // draws to the entire screen
         SDL_RenderPresent(renderer);                            // presents the color on the screen
     }
     else
@@ -77,10 +78,17 @@ void Game::render()
     }
 }
 
+void Game::update() {
+    // int rect = 32;
+    srcRect.x = 32 * int((SDL_GetTicks() / 100) % 8);
+}
+
 void Game::clean()
 {
     std::cout << "cleaning game \n";
-    SDL_DestroyWindow(window);     // frees up the space taken by the window
+    SDL_DestroyWindow(window); // frees up the space taken by the window
+    SDL_FreeSurface(surface);
+    SDL_DestroyTexture(texture);
     SDL_DestroyRenderer(renderer); // frees up the space taken by the renderer
     SDL_Quit();                    // cleans SDL
 }

@@ -1,0 +1,52 @@
+character sprites 4 x 4, 64 pixel each, 256 x 256 [DONE]
+npcs -> 10     [DONE]
+villain sprites, shield + front walking - left and right, shooting [DONE]
+elements sprites -> 4 elements     [DONE]
+one element x         [DONE]
+
+Uranium    - used to blow things up 
+Hydrogen   - used in fuel and energy
+Chlorine   - used as a deadly gas 
+Sulfur     - making explosives 
+Mercury    - Flourescent lamps 
+
+Mission 1: Gangs are inside a house and we have to remove them to help the girl
+Mission 2: Use of Sulfur to blow a huge boulder from the Path 
+Mission 3: Use mercury for lighting a room where Uranium is found
+
+Play Button
+Resume Button 
+Exit Button
+Credits Button
+Manual Button
+Manual Screen          [DONE]
+Credits Screen
+
+Bag Sprite             [DONE]
+Bag Contents Screen    [DONE]
+
+CS = Cutscene 
+
+Main Screen
+
+CS 1 - Scientist Working in the lab screen    [DONE]
+CS 2 - Lab Attacked Screen                    [DONE]
+CS 3 - Lab Destroyed Screen                   [DONE]
+
+Screen 1 - main game event      		    [DONE]
+Screen 2 - another game event   		    [DONE]
+Screen 3 - one more game event  		    [DONE]
+Screen 4 - inside a house / anything 
+Screen 5 - inside another house / anything    [DONE]
+Screen 6 - inside one more house / bar        [DONE]
+ 
+Screen 7 - Inside the castle screen and confronting villain    [DONE]
+CS 4 - Lost to villain + Choices to Give up Or Use an element
+CS 5 - Village Destruction if the element is used 
+CS 6 - The Scientist goes into oblivion
+CS 7 - Touches the Element
+CS 8 - Comes back to the Lab and shows text that now he can safely destroy the element and get it out of the villains hand 
+CS 10 - End Credits 
+
+CS 9 - Scientist killed and The Villain takes over the world 
+CS 10 - End Credits 
