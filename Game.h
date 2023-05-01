@@ -12,8 +12,8 @@ class Game {
 
         // Texture Variables
         SDL_Texture* texture;  // our texture variable {for images}
-        SDL_Rect srcRectangle;
-        SDL_Rect destRect;
+        SDL_Rect srcRect; // rectangle 1 
+        SDL_Rect destRect;     // rectangle 2
 
     public:
         Game(){}
