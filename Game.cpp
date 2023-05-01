@@ -14,8 +14,19 @@ bool Game::init(const char *title, int xpos, int ypos, int width, int height, in
         if (window != NULL)
         {
             renderer = SDL_CreateRenderer(window, -1, 0);
-            textureManager.load("assests/mainPlayer.png", "hero", renderer);
-            textureManager.load("assests/gameImages/NPCS/Pet Cats Pack/Cat-1/Cat-1-Run.png", "cat", renderer);
+            // textureManager.load("assests/mainPlayer.png", "hero", renderer);
+            // textureManager.load("assests/gameImages/NPCS/Pet Cats Pack/Cat-1/Cat-1-Run.png", "cat", renderer);
+            if (!TheTextureManager::Instance()->load("assests/mainPlayer.bmp",
+                                                     "hero", renderer))
+            {
+                return false;
+            }
+
+            if (!TheTextureManager::Instance()->load("assests/gameImages/NPCS/Pet Cats Pack/Cat-1/Cat-1-Run.png",
+                                                     "cat", renderer))
+            {
+                return false;
+            }
         }
         else
         {
@@ -60,9 +71,11 @@ void Game::render()
         // if everyting works fine then draw on the window
         SDL_SetRenderDrawColor(renderer, 100, 100, 100, 255); // gives the color to the renderer
         SDL_RenderClear(renderer);                            // cleans the renderer to draw the color
-        textureManager.draw("hero", 0, 0, 32, 48, renderer);
-        textureManager.drawFrame("hero", 100, 100, 32, 48, 1, currentFrame, renderer);
-        textureManager.drawFrame("cat", 200, 200, 50, 50, 1, catFrame, renderer);
+
+        TheTextureManager::Instance()->draw("hero", 0, 0, 32, 48, renderer);
+        TheTextureManager::Instance()->drawFrame("hero", 100, 100, 32, 48, 1, currentFrame, renderer);
+        TheTextureManager::Instance()->drawFrame("cat", 200, 200, 50, 50, 1, catFrame, renderer);
+
         SDL_RenderPresent(renderer); // presents the color on the screen
     }
     else
@@ -79,13 +92,13 @@ void Game::update()
 
 void Game::clean()
 {
-    std::cout << "cleaning game \n";
-    textureManager.clean();
+    TheTextureManager::Instance()->clean();
     SDL_DestroyWindow(window);     // frees up the space taken by the window
     SDL_DestroyRenderer(renderer); // frees up the space taken by the renderer
     renderer = nullptr;
     window = nullptr;
     SDL_Quit(); // cleans SDL
+    std::cout << "cleaned the game \n";
 }
 
-Game::~Game() = default; // destructor definition with an empty body
+Game::~Game() = default;

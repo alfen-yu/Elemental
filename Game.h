@@ -13,9 +13,8 @@ private:
     SDL_Window *window = NULL;     // our window variable
     SDL_Renderer *renderer = NULL; // our renderering variable
 
-    int currentFrame;              // keeps the count of the x height
-    int catFrame;                  // keeps the count of the x height of cat
-    TextureManager textureManager; // object of the texture manager class
+    int currentFrame; // keeps the count of the x height
+    int catFrame;     // keeps the count of the x height of cat
 
 public:
     Game(){}; // constructor

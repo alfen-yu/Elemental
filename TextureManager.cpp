@@ -1,5 +1,7 @@
 #include "TextureManager.h"
 
+TextureManager *TextureManager::TMInstance = 0;
+
 bool TextureManager::load(std::string fileName, std::string id, SDL_Renderer *renderer)
 {
     surface = IMG_Load(fileName.c_str()); // surface object
@@ -67,8 +69,11 @@ void TextureManager::clean()
 {
     SDL_FreeSurface(surface);    // for freeing the surface
     SDL_DestroyTexture(texture); // for freeing the memory taken by the texture
+    delete TMInstance;
+    TMInstance = nullptr;
     texture = nullptr;
     surface = nullptr;
+    std::cout << "cleaned the texture manager \n";
 }
 
 // destructor definition for the texture manager
