@@ -1,7 +1,8 @@
 #ifndef __Game__
 #define __Game__
-#include "SDL.h"
 #include <iostream>
+#include "SDL.h"
+#include "SDL_image.h"
 
 class Game {
     private:
