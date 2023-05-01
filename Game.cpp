@@ -11,22 +11,21 @@ bool Game::init(const char *title, int xpos, int ypos, int width, int height, in
         window = SDL_CreateWindow(title, xpos, ypos, width, height, flags);
 
         // if window was a success then create renderer
-        if (window != 0)
+        if (window != NULL)
         {
             renderer = SDL_CreateRenderer(window, -1, 0);
-            printf("SDL could not initialize! SDL_Error: %s\n", SDL_GetError());
         }
         else
         {
-            std::cout << "SDL could not create window! SDL_Error: %s\n", SDL_GetError();
+            std::cout << "SDL could not create renderer! SDL_Error: %s\n", SDL_GetError();
             // SDL was unable to create a window
             return false;
         }
     }
     else
     {
-        std::cout << "SDL could not initialise window! SDL_Error: %s\n", SDL_GetError();
-        return false; // SDL was unable to initialise and returns false
+        std::cout << "SDL could not create window! SDL_Error: %s\n", SDL_GetError();
+        return false; // SDL was unable to create window and returns false
     }
 
     running = true;
@@ -54,7 +53,7 @@ void Game::handleEvents()
 // rendering on the screen
 void Game::render()
 {
-    if (renderer != 0)
+    if (renderer != NULL)
     {
         // if everyting works fine then draw on the window
         SDL_SetRenderDrawColor(renderer, 100, 100, 100, 255); // gives the color to the renderer

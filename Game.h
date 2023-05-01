@@ -7,23 +7,29 @@ class Game {
     private:
         bool running; // tells the loop when to stop the game
 
-        SDL_Window *window = 0;     // our window variable
-        SDL_Renderer *renderer = 0; // our renderering variable
+        SDL_Window *window;     // our window variable
+        SDL_Renderer *renderer; // our renderering variable
+
+        // Texture Variables
+        SDL_Texture* texture;  // our texture variable {for images}
+        SDL_Rect srcRectangle;
+        SDL_Rect destRect;
 
     public:
         Game(){}
         ~Game(){}
 
-    bool init(const char *title, int xpos, int ypos, int width, int height, int flags); // handles initialisation of: SDL, Window, Renderer
-    void handleEvents(); // handles new input
-    void render(); // renders to new events
-    // void update(); // updates the rendering to the screen
-    void clean(); // cleans the game
+        bool init(const char *title, int xpos, int ypos, int width, int height, int flags); // handles initialisation of: SDL, Window, Renderer
+        void handleEvents(); // handles new input
+        void render(); // renders to new events
+        // void update(); // updates the rendering to the screen
+        void clean(); // cleans the game
 
-    // getter function for running variable 
-    bool getRunningState() {
-        return running;
-    }
+        // getter function for running variable 
+        bool getRunningState() {
+            return running;
+        }
 };
+
 
 #endif
