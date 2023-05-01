@@ -21,5 +21,9 @@ int main(int argc, char *args[])
 
     game->clean();
 
+    // handling memory leaks
+    delete game;
+    game = nullptr;
+
     return 0;
 }

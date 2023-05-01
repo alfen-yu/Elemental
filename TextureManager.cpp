@@ -67,4 +67,9 @@ void TextureManager::clean()
 {
     SDL_FreeSurface(surface);    // for freeing the surface
     SDL_DestroyTexture(texture); // for freeing the memory taken by the texture
+    texture = nullptr;
+    surface = nullptr;
 }
+
+// destructor definition for the texture manager
+TextureManager::~TextureManager() = default;

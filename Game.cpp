@@ -15,6 +15,7 @@ bool Game::init(const char *title, int xpos, int ypos, int width, int height, in
         {
             renderer = SDL_CreateRenderer(window, -1, 0);
             textureManager.load("assests/mainPlayer.png", "hero", renderer);
+            textureManager.load("assests/gameImages/NPCS/Pet Cats Pack/Cat-1/Cat-1-Run.png", "cat", renderer);
         }
         else
         {
@@ -61,7 +62,8 @@ void Game::render()
         SDL_RenderClear(renderer);                            // cleans the renderer to draw the color
         textureManager.draw("hero", 0, 0, 32, 48, renderer);
         textureManager.drawFrame("hero", 100, 100, 32, 48, 1, currentFrame, renderer);
-        SDL_RenderPresent(renderer);                          // presents the color on the screen
+        textureManager.drawFrame("cat", 200, 200, 50, 50, 1, catFrame, renderer);
+        SDL_RenderPresent(renderer); // presents the color on the screen
     }
     else
     {
@@ -72,6 +74,7 @@ void Game::render()
 void Game::update()
 {
     currentFrame = int((SDL_GetTicks() / 100) % 4);
+    catFrame = int((SDL_GetTicks() / 100) % 8);
 }
 
 void Game::clean()
@@ -80,5 +83,9 @@ void Game::clean()
     textureManager.clean();
     SDL_DestroyWindow(window);     // frees up the space taken by the window
     SDL_DestroyRenderer(renderer); // frees up the space taken by the renderer
-    SDL_Quit();                    // cleans SDL
+    renderer = nullptr;
+    window = nullptr;
+    SDL_Quit(); // cleans SDL
 }
+
+Game::~Game() = default; // destructor definition with an empty body

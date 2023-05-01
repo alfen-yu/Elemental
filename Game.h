@@ -13,12 +13,12 @@ private:
     SDL_Window *window = NULL;     // our window variable
     SDL_Renderer *renderer = NULL; // our renderering variable
 
-    int currentFrame;              // keeps the count of the y height
+    int currentFrame;              // keeps the count of the x height
+    int catFrame;                  // keeps the count of the x height of cat
     TextureManager textureManager; // object of the texture manager class
 
 public:
-    Game() {}
-    ~Game() {}
+    Game(){}; // constructor
 
     bool init(const char *title, int xpos, int ypos, int width, int height, int flags); // handles initialisation of: SDL, Window, Renderer
     void handleEvents();                                                                // handles new input
@@ -31,6 +31,8 @@ public:
     {
         return running;
     }
+
+    ~Game(); // destructor
 };
 
 #endif
