@@ -9,7 +9,7 @@ class Cat : public SDLGameObject
 public:
     Cat(const LoaderParams *params);
 
-    virtual void drawFrame();
+    virtual void draw();
     virtual void update();
     // virtual void clean();
 };

@@ -2,8 +2,8 @@
 
 Cat::Cat(const LoaderParams* params) : SDLGameObject(params) {}
 
-void Cat::drawFrame() {
-    SDLGameObject::drawFrame();
+void Cat::draw() {
+    SDLGameObject::draw();
 }
 
 void Cat::update() {

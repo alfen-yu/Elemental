@@ -33,8 +33,8 @@ bool Game::init(const char *title, int xpos, int ypos, int width, int height, in
             {
                 return false;
             }
-            gameObjects.push_back(new Player(new LoaderParams(0, 0, 32, 48, "hero", 1, 1)));
-            gameObjects.push_back(new Cat(new LoaderParams(100, 100, 50, 50, "cat", 1, 1)));
+            gameObjects.push_back(new Player(new LoaderParams(0, 0, 32, 48, "hero")));
+            gameObjects.push_back(new Cat(new LoaderParams(100, 100, 50, 50, "cat")));
         }
         else
         {
@@ -81,10 +81,10 @@ void Game::render()
         SDL_RenderClear(renderer);                            // cleans the renderer to draw the color
 
         // drawings
-        // TheTextureManager::Instance()->draw("background", 0, 0, 1400, 800, renderer);
+        TheTextureManager::Instance()->draw("background", 0, 0, 1400, 800, renderer);
         // TheTextureManager::Instance()->draw("hero", 0, 0, 32, 48, renderer);
         // TheTextureManager::Instance()->drawFrame("hero", 100, 100, 32, 48, 1, currentFrame, renderer);
-        // TheTextureManager::Instance()->drawFrame("cat", 200, 200, 50, 50, 1, catFrame, renderer);
+        TheTextureManager::Instance()->drawFrame("cat", 200, 200, 50, 50, 1, catFrame, renderer);
 
         // loops through all the objects and create them according to their id
         // the loop doesnt care what the type of object is, it just creates it
