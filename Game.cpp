@@ -14,8 +14,7 @@ bool Game::init(const char *title, int xpos, int ypos, int width, int height, in
         if (window != NULL)
         {
             renderer = SDL_CreateRenderer(window, -1, 0);
-            // textureManager.load("assests/mainPlayer.png", "hero", renderer);
-            // textureManager.load("assests/gameImages/NPCS/Pet Cats Pack/Cat-1/Cat-1-Run.png", "cat", renderer);
+    
             if (!TheTextureManager::Instance()->load("assests/mainPlayer.bmp",
                                                      "hero", renderer))
             {
@@ -27,6 +26,14 @@ bool Game::init(const char *title, int xpos, int ypos, int width, int height, in
             {
                 return false;
             }
+            if (!TheTextureManager::Instance()->load("assests/gameImages/MainGame Images/kxbbja7mh7341.png",
+                                                     "background", renderer))
+            {
+                return false;
+            }
+
+            go.load(0, 0, 1400, 800, "background");
+            player.load(0, 0, 32, 48, "hero");
         }
         else
         {
@@ -72,9 +79,13 @@ void Game::render()
         SDL_SetRenderDrawColor(renderer, 100, 100, 100, 255); // gives the color to the renderer
         SDL_RenderClear(renderer);                            // cleans the renderer to draw the color
 
-        TheTextureManager::Instance()->draw("hero", 0, 0, 32, 48, renderer);
-        TheTextureManager::Instance()->drawFrame("hero", 100, 100, 32, 48, 1, currentFrame, renderer);
-        TheTextureManager::Instance()->drawFrame("cat", 200, 200, 50, 50, 1, catFrame, renderer);
+        // drawings
+        // TheTextureManager::Instance()->draw("background", 0, 0, 1400, 800, renderer);
+        // TheTextureManager::Instance()->draw("hero", 0, 0, 32, 48, renderer);
+        // TheTextureManager::Instance()->drawFrame("hero", 100, 100, 32, 48, 1, currentFrame, renderer);
+        // TheTextureManager::Instance()->drawFrame("cat", 200, 200, 50, 50, 1, catFrame, renderer);
+        go.draw(renderer);
+        player.draw(renderer);
 
         SDL_RenderPresent(renderer); // presents the color on the screen
     }
@@ -86,15 +97,17 @@ void Game::render()
 
 void Game::update()
 {
-    currentFrame = int((SDL_GetTicks() / 100) % 4);
-    catFrame = int((SDL_GetTicks() / 100) % 8);
+    go.update();
+    player.update();
+    // currentFrame = int((SDL_GetTicks() / 100) % 4);
+    // catFrame = int((SDL_GetTicks() / 100) % 8);
 }
 
 void Game::clean()
 {
-    TheTextureManager::Instance()->clean();
-    SDL_DestroyWindow(window);     // frees up the space taken by the window
-    SDL_DestroyRenderer(renderer); // frees up the space taken by the renderer
+    TheTextureManager::Instance()->clean(); // texture cleaning takes place here
+    SDL_DestroyWindow(window);              // frees up the space taken by the window
+    SDL_DestroyRenderer(renderer);          // frees up the space taken by the renderer
     renderer = nullptr;
     window = nullptr;
     SDL_Quit(); // cleans SDL

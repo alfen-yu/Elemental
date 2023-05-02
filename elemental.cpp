@@ -15,8 +15,9 @@ int main(int argc, char *args[])
     while (game->getRunningState())
     { // game loop
         game->handleEvents();
-        game->render();
         game->update();
+        game->render();
+        SDL_Delay(10);
     }
 
     game->clean();

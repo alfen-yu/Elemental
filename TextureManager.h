@@ -6,6 +6,7 @@
 #include "SDL.h"
 #include "SDL_image.h"
 
+// Texture Manager handles the drawing work and rendering part of an object
 // Singleton : It allows us to create only one object of a type and use it throughout our code
 
 class TextureManager
@@ -44,6 +45,7 @@ public:
     ~TextureManager(); // destructor for texture manager
 };
 
+// simply giving another name
 typedef TextureManager TheTextureManager;
 
 #endif

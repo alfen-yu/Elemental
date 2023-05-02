@@ -4,6 +4,7 @@
 #include "SDL.h"
 #include "SDL_image.h"
 #include "TextureManager.h"
+#include "Player.h"
 
 class Game
 {
@@ -15,6 +16,9 @@ private:
 
     int currentFrame; // keeps the count of the x height
     int catFrame;     // keeps the count of the x height of cat
+
+    GameObject go;
+    Player player;
 
 public:
     Game(){}; // constructor
