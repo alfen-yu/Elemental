@@ -13,5 +13,5 @@ void Player::draw(SDL_Renderer* renderer) {
 // overriding the game object update function, any previous implementation in the game object of update isnt 
 //applicable here
 void Player::update() {
-    x += 2;
+    x += 1;
 }

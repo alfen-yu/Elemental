@@ -4,7 +4,10 @@
 #include "SDL.h"
 #include "SDL_image.h"
 #include "TextureManager.h"
+#include "GameObject.h"
 #include "Player.h"
+#include "Cat.h"
+#include <vector>
 
 class Game
 {
@@ -17,8 +20,12 @@ private:
     int currentFrame; // keeps the count of the x height
     int catFrame;     // keeps the count of the x height of cat
 
-    GameObject go;
-    Player player;
+    // objects created using game object will be passed here similar to texture manager
+    std::vector<GameObject*> gameObjects; 
+    
+    GameObject* go;
+    GameObject* plr;
+    GameObject* cat;
 
 public:
     Game(){}; // constructor

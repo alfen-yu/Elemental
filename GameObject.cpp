@@ -15,6 +15,7 @@ void GameObject::draw(SDL_Renderer* renderer) {
     TheTextureManager::Instance()->draw(textureID, x, y, width, height, renderer);
 }
 
+// function overloading
 void GameObject::draw(SDL_Renderer* renderer, int currentRow = 1, int currentFrame = 1) {
     TheTextureManager::Instance()->drawFrame(textureID, x, y, width, height, currentRow, currentFrame, renderer);
 }

@@ -14,7 +14,7 @@ bool Game::init(const char *title, int xpos, int ypos, int width, int height, in
         if (window != NULL)
         {
             renderer = SDL_CreateRenderer(window, -1, 0);
-    
+
             if (!TheTextureManager::Instance()->load("assests/mainPlayer.bmp",
                                                      "hero", renderer))
             {
@@ -26,14 +26,22 @@ bool Game::init(const char *title, int xpos, int ypos, int width, int height, in
             {
                 return false;
             }
-            if (!TheTextureManager::Instance()->load("assests/gameImages/MainGame Images/kxbbja7mh7341.png",
+            if (!TheTextureManager::Instance()->load("assests/gameImages/MainGame Images/tumblr_61c2ff118430c0f425d6f041c7452fc5_d7272492_1280.png",
                                                      "background", renderer))
             {
                 return false;
             }
 
-            go.load(0, 0, 1400, 800, "background");
-            player.load(0, 0, 32, 48, "hero");
+            go = new GameObject();
+            plr = new Player();
+            cat = new Cat();
+
+            go->load(0, 0, 1400, 800, "background");
+            plr->load(0, 0, 32, 48, "hero");
+            cat->load(100, 100, 50, 50, "cat");
+            gameObjects.push_back(go);
+            gameObjects.push_back(plr);
+            gameObjects.push_back(cat);
         }
         else
         {
@@ -84,8 +92,12 @@ void Game::render()
         // TheTextureManager::Instance()->draw("hero", 0, 0, 32, 48, renderer);
         // TheTextureManager::Instance()->drawFrame("hero", 100, 100, 32, 48, 1, currentFrame, renderer);
         // TheTextureManager::Instance()->drawFrame("cat", 200, 200, 50, 50, 1, catFrame, renderer);
-        go.draw(renderer);
-        player.draw(renderer);
+        
+        // loops through all the objects and create them according to their id 
+        // the loop doesnt care what the type of object is, it just creates it  
+        for (std::vector<GameObject*>::size_type i = 0; i != gameObjects.size(); i++) {
+            gameObjects[i]->draw(renderer);
+        }
 
         SDL_RenderPresent(renderer); // presents the color on the screen
     }
@@ -97,8 +109,9 @@ void Game::render()
 
 void Game::update()
 {
-    go.update();
-    player.update();
+    for (std::vector<GameObject*>::size_type i = 0; i != gameObjects.size(); i++) {
+        gameObjects[i]->update();
+    }
     // currentFrame = int((SDL_GetTicks() / 100) % 4);
     // catFrame = int((SDL_GetTicks() / 100) % 8);
 }
