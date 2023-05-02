@@ -1,24 +1,27 @@
 #include "SDLGameObject.h"
 #include "Game.h"
 
-SDLGameObject::SDLGameObject(const LoaderParams *params) : GameObject(params), position(params->getX(), params->getY())
+SDLGameObject::SDLGameObject(const LoaderParams *params) : GameObject(params),
+                                                           position(params->getX(), params->getY()), velocity(0, 0),
+                                                           acceleration(0, 0)
 {
     width = params->getWidth();
     height = params->getHeight();
     textureID = params->getID();
-    x = params->getX();
-    y = params->getY();
+
     currentRow = 1;
     currentFrame = 1;
 }
 
 void SDLGameObject::draw()
 {
-    TheTextureManager::Instance()->drawFrame(textureID, x, y, width, height, currentRow, currentFrame,
+    TheTextureManager::Instance()->drawFrame(textureID, (int)position.getX(), (int)position.getY(), width, height, currentRow, currentFrame,
                                              TheGame::Instance()->getRenderer());
 }
 
 void SDLGameObject::update()
 {
-    std::cout << "current frame: " << currentFrame << std::endl;
+    // operator overloading can be seen here
+    velocity += acceleration;
+    position += velocity;
 }

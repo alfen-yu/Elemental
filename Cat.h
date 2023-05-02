@@ -4,8 +4,6 @@
 
 class Cat : public SDLGameObject
 {
-    // private:
-    // int catFrame;
 public:
     Cat(const LoaderParams *params);
 

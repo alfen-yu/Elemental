@@ -84,7 +84,7 @@ void Game::render()
         TheTextureManager::Instance()->draw("background", 0, 0, 1400, 800, renderer);
         // TheTextureManager::Instance()->draw("hero", 0, 0, 32, 48, renderer);
         // TheTextureManager::Instance()->drawFrame("hero", 100, 100, 32, 48, 1, currentFrame, renderer);
-        TheTextureManager::Instance()->drawFrame("cat", 200, 200, 50, 50, 1, catFrame, renderer);
+        // TheTextureManager::Instance()->drawFrame("cat", 200, 200, 50, 50, 1, catFrame, renderer);
 
         // loops through all the objects and create them according to their id
         // the loop doesnt care what the type of object is, it just creates it
@@ -106,8 +106,6 @@ void Game::update()
     {
         gameObjects[i]->update();
     }
-    // currentFrame = int((SDL_GetTicks() / 100) % 4);
-    catFrame = int((SDL_GetTicks() / 100) % 8); 
 }
 
 void Game::clean()

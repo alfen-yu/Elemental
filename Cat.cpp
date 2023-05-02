@@ -7,7 +7,6 @@ void Cat::draw() {
 }
 
 void Cat::update() {
-    x += 1;
+    position.setX(position.getX() + 1);
     currentFrame = int((SDL_GetTicks() / 100) % 8);
-    std::cout << "current frame: " << currentFrame << std::endl;
 }

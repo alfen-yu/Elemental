@@ -21,12 +21,7 @@ public:
     int getY() const { return y; }
     int getWidth() const { return width; }
     int getHeight() const { return height; }
-    // int getCurrentFrame() const { return currentFrame; }
-    // int getCurrentRow() const { return currentRow; }
     std::string getID() const { return textureID; }
-
-    // int setCurrentFrame(int frame) { currentFrame = frame; }
-    // int setCurrentRow(int row) { currentRow = row; }
 };
 
 #endif
