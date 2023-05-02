@@ -1,5 +1,7 @@
 #include "Game.h"
 
+Game *Game::GInstance = 0;
+
 bool Game::init(const char *title, int xpos, int ypos, int width, int height, int flags)
 {
     // initialize SDL
@@ -31,17 +33,8 @@ bool Game::init(const char *title, int xpos, int ypos, int width, int height, in
             {
                 return false;
             }
-
-            go = new GameObject();
-            plr = new Player();
-            cat = new Cat();
-
-            go->load(0, 0, 1400, 800, "background");
-            plr->load(0, 0, 32, 48, "hero");
-            cat->load(100, 100, 50, 50, "cat");
-            gameObjects.push_back(go);
-            gameObjects.push_back(plr);
-            gameObjects.push_back(cat);
+            gameObjects.push_back(new Player(new LoaderParams(0, 0, 32, 48, "hero", 1, 1)));
+            gameObjects.push_back(new Cat(new LoaderParams(100, 100, 50, 50, "cat", 1, 1)));
         }
         else
         {
@@ -92,13 +85,13 @@ void Game::render()
         // TheTextureManager::Instance()->draw("hero", 0, 0, 32, 48, renderer);
         // TheTextureManager::Instance()->drawFrame("hero", 100, 100, 32, 48, 1, currentFrame, renderer);
         // TheTextureManager::Instance()->drawFrame("cat", 200, 200, 50, 50, 1, catFrame, renderer);
-        
-        // loops through all the objects and create them according to their id 
-        // the loop doesnt care what the type of object is, it just creates it  
-        for (std::vector<GameObject*>::size_type i = 0; i != gameObjects.size(); i++) {
-            gameObjects[i]->draw(renderer);
-        }
 
+        // loops through all the objects and create them according to their id
+        // the loop doesnt care what the type of object is, it just creates it
+        for (std::vector<GameObject *>::size_type i = 0; i != gameObjects.size(); i++)
+        {
+            gameObjects[i]->draw();
+        }
         SDL_RenderPresent(renderer); // presents the color on the screen
     }
     else
@@ -109,11 +102,12 @@ void Game::render()
 
 void Game::update()
 {
-    for (std::vector<GameObject*>::size_type i = 0; i != gameObjects.size(); i++) {
+    for (std::vector<GameObject *>::size_type i = 0; i != gameObjects.size(); i++)
+    {
         gameObjects[i]->update();
     }
     // currentFrame = int((SDL_GetTicks() / 100) % 4);
-    // catFrame = int((SDL_GetTicks() / 100) % 8);
+    catFrame = int((SDL_GetTicks() / 100) % 8); 
 }
 
 void Game::clean()

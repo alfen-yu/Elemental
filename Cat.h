@@ -1,13 +1,17 @@
 #ifndef __Cat__
 #define __Cat__
-#include "GameObject.h"
+#include "SDLGameObject.h"
 
-class Cat: public GameObject {
-    public:
-        void load(int x, int y, int width, int height, std::string textureID);
-        void draw(SDL_Renderer* renderer);
-        void update();
-        // void clean();
+class Cat : public SDLGameObject
+{
+    // private:
+    // int catFrame;
+public:
+    Cat(const LoaderParams *params);
+
+    virtual void drawFrame();
+    virtual void update();
+    // virtual void clean();
 };
 
-#endif 
+#endif
