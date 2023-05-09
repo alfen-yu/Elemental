@@ -1,6 +1,8 @@
 #ifndef __GameState__
 #define __GameState__
 
+#include "TextureManager.h"
+
 #include <string>
 #include <iostream>
 #include <vector>

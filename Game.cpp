@@ -7,9 +7,6 @@ bool Game::init(const char *title, int xpos, int ypos, int width, int height, in
     // initialize SDL
     int initialiser = SDL_Init(SDL_INIT_EVERYTHING);
 
-    gameStateMachine = new GameStateMachine();
-    gameStateMachine->changeState(new MenuState());
-
     if (initialiser >= 0)
     { // returns -1 if unsuccessful
         // if initialisation is successful then create our window
@@ -19,6 +16,9 @@ bool Game::init(const char *title, int xpos, int ypos, int width, int height, in
         if (window != NULL)
         {
             renderer = SDL_CreateRenderer(window, -1, 0);
+
+            gameStateMachine = new GameStateMachine();
+            gameStateMachine->changeState(new MenuState());
 
             if (!TheTextureManager::Instance()->load("assests/sprite.bmp",
                                                      "hero", renderer))
@@ -36,8 +36,8 @@ bool Game::init(const char *title, int xpos, int ypos, int width, int height, in
             {
                 return false;
             }
-            gameObjects.push_back(new Player(new LoaderParams(0, 768/2, 64, 64, 64*1.1, 64*1.1, "hero")));
-            gameObjects.push_back(new Cat(new LoaderParams(0, 470, 50, 50, 120, 120, "cat")));
+            // gameObjects.push_back(new Player(new LoaderParams(0, 768 / 2, 64, 64, 64 * 1.1, 64 * 1.1, "hero")));
+            // gameObjects.push_back(new Cat(new LoaderParams(0, 470, 50, 50, 120, 120, "cat")));
         }
         else
         {
@@ -61,38 +61,39 @@ void Game::handleEvents()
 {
     TheInputHandler::Instance()->update();
 
-    if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_RETURN)) {
-        gameStateMachine->changeState( new PlayState() );
+    if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_RETURN))
+    {
+        gameStateMachine->changeState(new PlayState());
     }
 }
 
 // rendering on the screen
 void Game::render()
 {
-    if (renderer != NULL)
-    {
-        // if everyting works fine then draw on the window
-        SDL_SetRenderDrawColor(renderer, 100, 100, 100, 255); // gives the color to the renderer
-        SDL_RenderClear(renderer);                            // cleans the renderer to draw the color
+    // if (renderer != NULL)
+    // {
+    //     // if everyting works fine then draw on the window
+    //     SDL_SetRenderDrawColor(renderer, 100, 100, 100, 255); // gives the color to the renderer
+    SDL_RenderClear(renderer); // cleans the renderer to draw the color
 
-        // drawings
-        TheTextureManager::Instance()->draw("background", 0, 0, 1020, 682, 1366, 768, renderer);
-        // TheTextureManager::Instance()->draw("hero", 0, 0, 32, 48, renderer);
-        // TheTextureManager::Instance()->drawFrame("hero", 100, 100, 32, 48, 1, currentFrame, renderer);
-        // TheTextureManager::Instance()->drawFrame("cat", 200, 200, 50, 50, 1, catFrame, renderer);
-
-        // loops through all the objects and create them according to their id
-        // the loop doesnt care what the type of object is, it just creates it
+    //     // drawings
+    //     TheTextureManager::Instance()->draw("background", 0, 0, 1020, 682, 1366, 768, renderer);
+    //     // TheTextureManager::Instance()->draw("hero", 0, 0, 32, 48, renderer);
+    //     // TheTextureManager::Instance()->drawFrame("hero", 100, 100, 32, 48, 1, currentFrame, renderer);
+    //     // TheTextureManager::Instance()->drawFrame("cat", 200, 200, 50, 50, 1, catFrame, renderer);
+    gameStateMachine->render();
+    //     // loops through all the objects and create them according to their id
+    //     // the loop doesnt care what the type of object is, it just creates it
         for (std::vector<GameObject *>::size_type i = 0; i != gameObjects.size(); i++)
         {
             gameObjects[i]->draw();
         }
-        SDL_RenderPresent(renderer); // presents the color on the screen
-    }
-    else
-    {
-        std::cout << "issues with the renderer! SDL_Error: %s\n", SDL_GetError();
-    }
+    SDL_RenderPresent(renderer); // presents the color on the screen
+    // }
+    // else
+    // {
+    //     std::cout << "issues with the renderer! SDL_Error: %s\n", SDL_GetError();
+    // }
 }
 
 void Game::update()
@@ -101,6 +102,7 @@ void Game::update()
     {
         gameObjects[i]->update();
     }
+    gameStateMachine->update();
 }
 
 void Game::clean()

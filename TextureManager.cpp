@@ -9,12 +9,11 @@ bool TextureManager::load(std::string fileName, std::string id, SDL_Renderer *re
     if (surface == 0)
     {
         return false;
-        std::cout << "issues with the renderer! SDL_Error: %s\n", SDL_GetError();
+        std::cout << "issues with loading surface! SDL_Error: %s\n", SDL_GetError();
     }
 
     // surface is run on processor, texture is run on GPU therefore faster
     texture = SDL_CreateTextureFromSurface(renderer, surface); // creates a texture from a surface
-
     if (texture != 0)
     {
         // getting in here is assumed that the texture was created successfully
@@ -23,7 +22,7 @@ bool TextureManager::load(std::string fileName, std::string id, SDL_Renderer *re
     }
     else
     {
-        std::cout << "issues with the renderer! SDL_Error: %s\n", SDL_GetError();
+        std::cout << "issues with the texture! SDL_Error: %s\n", SDL_GetError();
     }
 
     // shouldve return true from the if clause otherwise reaching here means that something bad happened
@@ -68,6 +67,10 @@ void TextureManager::drawFrame(std::string id, int x, int y, int srcWidth, int s
     destRect.y = y;
 
     SDL_RenderCopy(renderer, textureMap[id], &srcRect, &destRect);
+}
+
+void TextureManager::clearFromTextureMap(std::string id) {
+    textureMap.erase(id);
 }
 
 void TextureManager::clean()

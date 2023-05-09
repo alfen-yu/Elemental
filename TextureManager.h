@@ -41,6 +41,7 @@ public:
     // draws dynamic image, moving image
     void drawFrame(std::string id, int x, int y, int srcWidth, int srcHeight, int destWidth, int destHeight, int currentRow, int currentFrame, SDL_Renderer *renderer);
     void clean(); // cleans the textures and the surfaces
+    void clearFromTextureMap(std::string id);
 
     ~TextureManager(); // destructor for texture manager
 };

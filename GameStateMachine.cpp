@@ -33,3 +33,15 @@ void GameStateMachine::changeState(GameState* state) {
     // initialise the state
     gameStates.back()->onEnter();
 }
+
+void GameStateMachine::update() {
+    if (!gameStates.empty()) {
+        gameStates.back()->update();
+    }
+}
+
+void GameStateMachine::render() {
+    if (!gameStates.empty()) {
+        gameStates.back()->render();
+    }
+}

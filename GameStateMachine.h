@@ -22,6 +22,8 @@ class GameStateMachine {
         void pushState(GameState* state); // pushes the state on the top of the stack, doesnt remove previous state
         void popState(); // pops the state from the top of the stack, doesnt add another state
         void changeState(GameState* state); // changes the state, removes previous state before adding another
+        void update();
+        void render();
 };
 
 #endif
