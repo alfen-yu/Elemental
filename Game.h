@@ -7,6 +7,7 @@
 #include "TextureManager.h"
 #include "Player.h"
 #include "Cat.h"
+#include "InputHandler.h"
 #include <vector>
 
 // What happens in Game Class : {Handles all the initialisation, drawing, rendering, loading textures,
@@ -54,6 +55,9 @@ public:
     bool getRunningState()
     {
         return running;
+    }
+    void setRunningState(bool runCheck) {
+        running = runCheck;
     }
 
     SDL_Renderer *getRenderer() const { return renderer; }

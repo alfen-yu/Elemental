@@ -17,7 +17,7 @@ bool Game::init(const char *title, int xpos, int ypos, int width, int height, in
         {
             renderer = SDL_CreateRenderer(window, -1, 0);
 
-            if (!TheTextureManager::Instance()->load("assests/mainPlayer.bmp",
+            if (!TheTextureManager::Instance()->load("assests/sprite.bmp",
                                                      "hero", renderer))
             {
                 return false;
@@ -28,12 +28,12 @@ bool Game::init(const char *title, int xpos, int ypos, int width, int height, in
             {
                 return false;
             }
-            if (!TheTextureManager::Instance()->load("assests/gameImages/MainGame Images/tumblr_61c2ff118430c0f425d6f041c7452fc5_d7272492_1280.png",
+            if (!TheTextureManager::Instance()->load("assests/gameImages/MainGame Images/mainImage1.png",
                                                      "background", renderer))
             {
                 return false;
             }
-            gameObjects.push_back(new Player(new LoaderParams(0, 0, 32, 48, "hero")));
+            gameObjects.push_back(new Player(new LoaderParams(0, 0, 64, 64, "hero")));
             gameObjects.push_back(new Cat(new LoaderParams(100, 100, 50, 50, "cat")));
         }
         else
@@ -56,19 +56,7 @@ bool Game::init(const char *title, int xpos, int ypos, int width, int height, in
 // handling user inputs and events
 void Game::handleEvents()
 {
-    SDL_Event event;
-
-    if (SDL_PollEvent(&event))
-    {
-        switch (event.type)
-        {
-        case SDL_QUIT: // handles the quit functionality, on click the x button
-            running = false;
-            break;
-        default:
-            break;
-        }
-    }
+    TheInputHandler::Instance()->update();
 }
 
 // rendering on the screen
@@ -110,13 +98,27 @@ void Game::update()
 
 void Game::clean()
 {
+    delete Game::GInstance;
+    Game::GInstance = nullptr;
+
+    delete Game::Instance();
+    delete Game::getRenderer();
+    std::cout << "Game Specific Variables Cleaned \n";
+
     TheTextureManager::Instance()->clean(); // texture cleaning takes place here
-    SDL_DestroyWindow(window);              // frees up the space taken by the window
-    SDL_DestroyRenderer(renderer);          // frees up the space taken by the renderer
-    renderer = nullptr;
-    window = nullptr;
-    SDL_Quit(); // cleans SDL
-    std::cout << "cleaned the game \n";
+    TheInputHandler::Instance()->clean();
 }
 
-Game::~Game() = default;
+Game::~Game()
+{
+    // // GameObject::clean();
+    // // SDLGameObject::clean();
+    // std::cout << "Other Objects Cleaned \n";
+    SDL_DestroyWindow(window);     // frees up the space taken by the window
+    SDL_DestroyRenderer(renderer); // frees up the space taken by the renderer
+    // renderer = nullptr;
+    // window = nullptr;
+    SDL_Quit(); // cleans SDL
+    std::cout << "Game Cleaned \n";
+    std::cout << "Game Destructor Called \n";
+};

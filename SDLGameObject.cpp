@@ -25,3 +25,11 @@ void SDLGameObject::update()
     velocity += acceleration;
     position += velocity;
 }
+
+void SDLGameObject::clean() {
+    std::cout << "SDL Game Object Cleaned \n";
+}
+
+SDLGameObject::~SDLGameObject() {
+    std::cout << "SDL Game Object Destructor Called \n";
+}

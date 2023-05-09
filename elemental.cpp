@@ -38,8 +38,7 @@ int main(int argc, char *args[])
         return -1;
     }
 
-    // handling memory leaks
-    delete TheGame::Instance();
+    TheGame::Instance()->clean();
 
     return 0;
 }

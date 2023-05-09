@@ -69,12 +69,16 @@ void TextureManager::clean()
 {
     SDL_FreeSurface(surface);    // for freeing the surface
     SDL_DestroyTexture(texture); // for freeing the memory taken by the texture
-    delete TMInstance;
-    TMInstance = nullptr;
-    texture = nullptr;
-    surface = nullptr;
-    std::cout << "cleaned the texture manager \n";
+    // delete TMInstance;
+    // delete TextureManager::TMInstance;
+    // delete TextureManager::Instance();
+    // TextureManager::TMInstance = nullptr;
+    // texture = nullptr;
+    // surface = nullptr;
+    std::cout << "Texture Manager Cleaned \n";
 }
 
 // destructor definition for the texture manager
-TextureManager::~TextureManager() = default;
+TextureManager::~TextureManager() {
+    std::cout << "Texture Manager Destructor Called \n";
+}
