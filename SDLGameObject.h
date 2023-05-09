@@ -10,7 +10,8 @@ protected:
     Vector2D velocity;     // change in the position
     Vector2D acceleration; // gradual or just increase in velocity
 
-    int width, height;
+    int srcWidth, srcHeight;
+    int destWidth, destHeight;
     int currentFrame, currentRow;
 
     std::string textureID;

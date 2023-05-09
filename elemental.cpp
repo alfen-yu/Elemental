@@ -14,7 +14,7 @@ int main(int argc, char *args[])
 
     windowFlags = SDL_WINDOW_MAXIMIZED | SDL_WINDOW_RESIZABLE | SDL_WINDOW_SHOWN;
 
-    if (TheGame::Instance()->init("Elemental", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, windowFlags))
+    if (TheGame::Instance()->init("Elemental", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1366, 768, windowFlags))
     {
         while (TheGame::Instance()->getRunningState())
         {

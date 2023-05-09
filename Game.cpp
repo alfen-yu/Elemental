@@ -7,6 +7,9 @@ bool Game::init(const char *title, int xpos, int ypos, int width, int height, in
     // initialize SDL
     int initialiser = SDL_Init(SDL_INIT_EVERYTHING);
 
+    gameStateMachine = new GameStateMachine();
+    gameStateMachine->changeState(new MenuState());
+
     if (initialiser >= 0)
     { // returns -1 if unsuccessful
         // if initialisation is successful then create our window
@@ -33,8 +36,8 @@ bool Game::init(const char *title, int xpos, int ypos, int width, int height, in
             {
                 return false;
             }
-            gameObjects.push_back(new Player(new LoaderParams(0, 0, 64, 64, "hero")));
-            gameObjects.push_back(new Cat(new LoaderParams(100, 100, 50, 50, "cat")));
+            gameObjects.push_back(new Player(new LoaderParams(0, 768/2, 64, 64, 64*1.1, 64*1.1, "hero")));
+            gameObjects.push_back(new Cat(new LoaderParams(0, 470, 50, 50, 120, 120, "cat")));
         }
         else
         {
@@ -57,6 +60,10 @@ bool Game::init(const char *title, int xpos, int ypos, int width, int height, in
 void Game::handleEvents()
 {
     TheInputHandler::Instance()->update();
+
+    if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_RETURN)) {
+        gameStateMachine->changeState( new PlayState() );
+    }
 }
 
 // rendering on the screen
@@ -69,7 +76,7 @@ void Game::render()
         SDL_RenderClear(renderer);                            // cleans the renderer to draw the color
 
         // drawings
-        TheTextureManager::Instance()->draw("background", 0, 0, 1400, 800, renderer);
+        TheTextureManager::Instance()->draw("background", 0, 0, 1020, 682, 1366, 768, renderer);
         // TheTextureManager::Instance()->draw("hero", 0, 0, 32, 48, renderer);
         // TheTextureManager::Instance()->drawFrame("hero", 100, 100, 32, 48, 1, currentFrame, renderer);
         // TheTextureManager::Instance()->drawFrame("cat", 200, 200, 50, 50, 1, catFrame, renderer);

@@ -3,14 +3,9 @@
 
 #include <string>
 #include <iostream>
+#include <vector>
 
-// Implementing Finite State Machine to handle states 
-// 1. Removing one state and adding another: We will use this way to completely 
-// change states without leaving the option to return
-// 2. Adding one state without removing the previous state: This way is useful 
-// for pause menus and so on
-// 3. Removing one state without adding another: This way will be used to remove 
-// pause states or any other state that had been pushed on top of another one
+// Abstract class for the States
 
 class GameState {
     public:

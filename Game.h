@@ -1,6 +1,7 @@
 #ifndef __Game__
 #define __Game__
 #include <iostream>
+#include <vector>
 #include "SDL.h"
 #include "SDL_image.h"
 #include "GameObject.h"
@@ -8,7 +9,9 @@
 #include "Player.h"
 #include "Cat.h"
 #include "InputHandler.h"
-#include <vector>
+#include "GameStateMachine.h"
+#include "MenuState.h"
+#include "PlayState.h"
 
 // What happens in Game Class : {Handles all the initialisation, drawing, rendering, loading textures,
 //                               basically every main thing is happening in the game class}
@@ -21,6 +24,9 @@ class Game
 private:
     Game() {} // constructor private to make it a singleton
     static Game *GInstance;
+
+    // initilisation of the Game States
+    GameStateMachine* gameStateMachine;
 
     bool running; // tells the loop when to stop the game
 

@@ -33,7 +33,7 @@ bool TextureManager::load(std::string fileName, std::string id, SDL_Renderer *re
 // the reason for creating sdl rects twice in both functions is that if a single one was used, the next image
 // drawn would create problems for the first one
 
-void TextureManager::draw(std::string id, int x, int y, int width, int height, SDL_Renderer *renderer)
+void TextureManager::draw(std::string id, int x, int y, int srcWidth, int srcHeight, int destWidth, int destHeight, SDL_Renderer *renderer)
 {
     SDL_Rect srcRect;  // source rectangle which is a parent rectangle of destination
     SDL_Rect destRect; // destination rectangle is a subset of source rectangle
@@ -42,22 +42,27 @@ void TextureManager::draw(std::string id, int x, int y, int width, int height, S
     srcRect.y = 0;
     destRect.x = x;
     destRect.y = y;
-    destRect.w = srcRect.w = width;
-    destRect.h = srcRect.h = height;
+    srcRect.w = srcWidth;
+    srcRect.h = srcHeight;
+    destRect.w = destWidth;
+    destRect.h = destHeight;
 
     SDL_RenderCopy(renderer, textureMap[id], &srcRect, &destRect);
 }
 
-void TextureManager::drawFrame(std::string id, int x, int y, int width, int height, int currentRow, int currentFrame, SDL_Renderer *renderer)
+void TextureManager::drawFrame(std::string id, int x, int y, int srcWidth, int srcHeight, int destWidth, int destHeight, int currentRow, int currentFrame, SDL_Renderer *renderer)
 {
     SDL_Rect srcRect;  // source rectangle which is a parent rectangle of destination
     SDL_Rect destRect; // destination rectangle is a subset of source rectangle
 
-    srcRect.x = width * currentFrame;
-    srcRect.y = height * (currentRow - 1);
+    srcRect.x = srcWidth * currentFrame;
+    srcRect.y = srcHeight * (currentRow - 1);
 
-    destRect.w = srcRect.w = width;
-    destRect.h = srcRect.h = height;
+    srcRect.w = srcWidth;
+    srcRect.h = srcHeight;
+
+    destRect.w = destWidth;
+    destRect.h = destHeight;
 
     destRect.x = x;
     destRect.y = y;
