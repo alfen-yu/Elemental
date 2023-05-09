@@ -12,8 +12,12 @@ class MenuButtons : public SDLGameObject {
             CLICKED = 2
         };
 
+        // implementing function pointers that handle the game states
+        void (*callback) (); // C styled function pointers
+        bool released;
+
     public:
-        MenuButtons(const LoaderParams* params);
+        MenuButtons(const LoaderParams* params, void (*callback)());
 
         virtual void draw();
         virtual void update();

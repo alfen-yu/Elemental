@@ -1,6 +1,6 @@
 #include "MenuButtons.h"
 
-MenuButtons::MenuButtons(const LoaderParams *params) : SDLGameObject(params)
+MenuButtons::MenuButtons(const LoaderParams *params, void (*cb)()) : SDLGameObject(params), callback(cb)
 {
     currentFrame = MOUSE_OUT; // states are frame 0
 }
@@ -23,7 +23,13 @@ void MenuButtons::update()
 
         if (TheInputHandler::Instance()->getMouseButtonStates(LEFT))
         {
-            currentFrame = CLICKED;
+            currentFrame = CLICKED; // indicates that the mouse have clicked here 
+            callback(); // call our callback function 
+            released = false;
+        }
+        else if (!TheInputHandler::Instance()->getMouseButtonStates(LEFT)){
+            currentFrame = MOUSE_OUT;
+            released = true; // ensures that we have released the mouse button to utilise callback again
         }
     }
     else {

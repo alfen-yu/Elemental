@@ -2,6 +2,15 @@
 
 const std::string MenuState::menuID = "MENU";
 
+void MenuState::menuToPlay() {
+    std::cout << "play button clicked \n";
+}
+
+void MenuState::exitFromMenu() {
+    std::cout << "exit button clicked \n";
+    TheGame::Instance()->setRunningState(false);
+}
+
 void MenuState::update()
 {
     for (int i = 0; i < gameObjects.size(); i++)
@@ -31,8 +40,8 @@ bool MenuState::onEnter()
         return false;
     }
 
-    GameObject* button1 = new MenuButtons(new LoaderParams(100, 100, 225, 225, 300, 225, "playbutton"));
-    GameObject* button2 = new MenuButtons(new LoaderParams(100, 400, 310, 163, 310, 163, "exitbutton"));
+    GameObject* button1 = new MenuButtons(new LoaderParams(100, 100, 225, 225, 300, 225, "playbutton"), menuToPlay);
+    GameObject* button2 = new MenuButtons(new LoaderParams(100, 400, 310, 163, 310, 163, "exitbutton"), exitFromMenu);
 
     gameObjects.push_back(button1);
     gameObjects.push_back(button2);
