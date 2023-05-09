@@ -57,6 +57,10 @@ public:
     void update();                                                                      // updates the rendering to the screen
     void clean();                                                                       // cleans the game
 
+    GameStateMachine* getStateMachine() {
+        return gameStateMachine;
+    }
+
     // getter function for running variable
     bool getRunningState()
     {

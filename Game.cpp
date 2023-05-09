@@ -20,22 +20,17 @@ bool Game::init(const char *title, int xpos, int ypos, int width, int height, in
             gameStateMachine = new GameStateMachine();
             gameStateMachine->changeState(new MenuState());
 
-            if (!TheTextureManager::Instance()->load("assests/sprite.bmp",
-                                                     "hero", renderer))
-            {
-                return false;
-            }
 
             if (!TheTextureManager::Instance()->load("assests/gameImages/NPCS/Pet Cats Pack/Cat-1/Cat-1-Run.png",
                                                      "cat", renderer))
             {
                 return false;
             }
-            if (!TheTextureManager::Instance()->load("assests/gameImages/MainGame Images/mainImage1.png",
-                                                     "background", renderer))
-            {
-                return false;
-            }
+            // if (!TheTextureManager::Instance()->load("assests/gameImages/main.jpg",
+            //                                          "background", renderer))
+            // {
+            //     return false;
+            // }
             // gameObjects.push_back(new Player(new LoaderParams(0, 768 / 2, 64, 64, 64 * 1.1, 64 * 1.1, "hero")));
             // gameObjects.push_back(new Cat(new LoaderParams(0, 470, 50, 50, 120, 120, "cat")));
         }
@@ -61,10 +56,10 @@ void Game::handleEvents()
 {
     TheInputHandler::Instance()->update();
 
-    if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_RETURN))
-    {
-        gameStateMachine->changeState(new PlayState());
-    }
+    // if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_RETURN))
+    // {
+    //     gameStateMachine->changeState(new PlayState());
+    // }
 }
 
 // rendering on the screen
@@ -77,17 +72,17 @@ void Game::render()
     SDL_RenderClear(renderer); // cleans the renderer to draw the color
 
     //     // drawings
-    //     TheTextureManager::Instance()->draw("background", 0, 0, 1020, 682, 1366, 768, renderer);
+    // TheTextureManager::Instance()->draw("background", 0, 0, 1020, 682, 1366, 768, renderer);
     //     // TheTextureManager::Instance()->draw("hero", 0, 0, 32, 48, renderer);
     //     // TheTextureManager::Instance()->drawFrame("hero", 100, 100, 32, 48, 1, currentFrame, renderer);
     //     // TheTextureManager::Instance()->drawFrame("cat", 200, 200, 50, 50, 1, catFrame, renderer);
     gameStateMachine->render();
     //     // loops through all the objects and create them according to their id
     //     // the loop doesnt care what the type of object is, it just creates it
-        for (std::vector<GameObject *>::size_type i = 0; i != gameObjects.size(); i++)
-        {
-            gameObjects[i]->draw();
-        }
+        // for (std::vector<GameObject *>::size_type i = 0; i != gameObjects.size(); i++)
+        // {
+        //     gameObjects[i]->draw();
+        // }
     SDL_RenderPresent(renderer); // presents the color on the screen
     // }
     // else
@@ -98,10 +93,10 @@ void Game::render()
 
 void Game::update()
 {
-    for (std::vector<GameObject *>::size_type i = 0; i != gameObjects.size(); i++)
-    {
-        gameObjects[i]->update();
-    }
+    // for (std::vector<GameObject *>::size_type i = 0; i != gameObjects.size(); i++)
+    // {
+    //     gameObjects[i]->update();
+    // }
     gameStateMachine->update();
 }
 

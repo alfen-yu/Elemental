@@ -55,7 +55,7 @@ void TextureManager::drawFrame(std::string id, int x, int y, int srcWidth, int s
     SDL_Rect destRect; // destination rectangle is a subset of source rectangle
 
     srcRect.x = srcWidth * currentFrame;
-    srcRect.y = srcHeight * (currentRow - 1);
+    srcRect.y = srcHeight * currentRow;
 
     srcRect.w = srcWidth;
     srcRect.h = srcHeight;
