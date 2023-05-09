@@ -20,11 +20,6 @@ bool Game::init(const char *title, int xpos, int ypos, int width, int height, in
             gameStateMachine = new GameStateMachine();
             gameStateMachine->changeState(new MenuState());
 
-            if (!TheTextureManager::Instance()->load("assests/sprite.bmp",
-                                                     "hero", renderer))
-            {
-                return false;
-            }
 
             if (!TheTextureManager::Instance()->load("assests/gameImages/NPCS/Pet Cats Pack/Cat-1/Cat-1-Run.png",
                                                      "cat", renderer))
