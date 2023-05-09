@@ -28,22 +28,22 @@ void Player::update()
     if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_RIGHT)) { // for right arrow key
         position.setX(position.getX() + 1);
         currentFrame = int((SDL_GetTicks() / 100) % 4);
-        currentRow = 2;
+        currentRow = 3;
     }
     if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_LEFT)) { // for left arrow key
         position.setX(position.getX() - 1);
         currentFrame = int((SDL_GetTicks() / 100) % 4);
-        currentRow = 1;
+        currentRow = 2;
     }
     if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_UP)) { // for up arrow key
         position.setY(position.getY() - 1);
         currentFrame = int((SDL_GetTicks() / 100) % 4);
-        currentRow = 3;
+        currentRow = 4;
     }
     if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_DOWN)) { // for down arrow key
         position.setY(position.getY() + 1);
         currentFrame = int((SDL_GetTicks() / 100) % 4);
-        currentRow = 0;
+        currentRow = 1;
     }
 
     SDLGameObject::update();

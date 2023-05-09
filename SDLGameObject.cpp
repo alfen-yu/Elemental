@@ -10,8 +10,9 @@ SDLGameObject::SDLGameObject(const LoaderParams *params) : GameObject(params),
     destWidth = params->getDestWidth();
     destHeight = params->getDestHeight();
     textureID = params->getID();
-    currentRow = params->getCurrentRow();
-    currentFrame = params->getCurrentFrame();
+
+    currentRow = 0;
+    currentFrame = 0;
 }
 
 void SDLGameObject::draw()
