@@ -3,7 +3,7 @@
 const std::string MenuState::menuID = "MENU";
 
 void MenuState::menuToPlay() {
-    std::cout << "play button clicked \n";
+    TheGame::Instance()->getStateMachine()->changeState( new PlayState() );
 }
 
 void MenuState::exitFromMenu() {
@@ -29,6 +29,10 @@ void MenuState::render()
 
 bool MenuState::onEnter()
 {
+    if (!TheTextureManager::Instance()->load("assests/gameImages/main.jpg", "background", TheGame::Instance()->getRenderer())) {
+        return false;
+    }
+    
     if (!TheTextureManager::Instance()->load("assests/gameImages/MainGame Images/playbutton.png", "playbutton",
                                              TheGame::Instance()->getRenderer()))
     {
@@ -40,9 +44,11 @@ bool MenuState::onEnter()
         return false;
     }
 
+    GameObject* background = new SDLGameObject(new LoaderParams(0, 0, 1920, 1080, 1366, 768, "background"));
     GameObject* button1 = new MenuButtons(new LoaderParams(100, 100, 225, 225, 300, 225, "playbutton"), menuToPlay);
     GameObject* button2 = new MenuButtons(new LoaderParams(100, 400, 310, 163, 310, 163, "exitbutton"), exitFromMenu);
 
+    gameObjects.push_back(background);
     gameObjects.push_back(button1);
     gameObjects.push_back(button2);
 
@@ -58,6 +64,7 @@ bool MenuState::onExit()
     gameObjects.clear();
     TheTextureManager::Instance()->clearFromTextureMap("playbutton");
     TheTextureManager::Instance()->clearFromTextureMap("exitbutton");
+    TheTextureManager::Instance()->clearFromTextureMap("background");
 
     std::cout << "Exiting Menu State \n";
     return true;
