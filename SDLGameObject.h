@@ -23,6 +23,8 @@ public:
     virtual void update();
     virtual void clean();
 
+    virtual Vector2D getPosition();
+
     ~SDLGameObject();
 };
 

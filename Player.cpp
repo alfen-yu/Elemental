@@ -8,6 +8,10 @@ void Player::draw()
     SDLGameObject::draw();
 }
 
+Vector2D Player::getPosition() {
+    SDLGameObject::getPosition();
+}
+
 // overriding the game object update function, any previous implementation in the game object of update isnt
 // applicable here
 void Player::update()

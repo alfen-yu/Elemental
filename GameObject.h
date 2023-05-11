@@ -3,6 +3,7 @@
 #include <iostream>
 #include "LoaderParams.h"
 #include "SDL.h"
+#include "Vector2D.h"
 
 // Game Object is like the parent class that handles the creation of every object in the game to avoid redundancy
 class GameObject {
@@ -15,6 +16,7 @@ class GameObject {
         virtual ~GameObject() {
             std::cout << "Game Object Destructor Called \n";
         }
+        virtual Vector2D getPosition() {}
 };
 
 #endif 

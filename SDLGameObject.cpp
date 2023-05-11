@@ -27,6 +27,10 @@ void SDLGameObject::update()
     position += velocity;
 }
 
+Vector2D SDLGameObject::getPosition() {
+    return position;
+}
+
 void SDLGameObject::clean() {
     std::cout << "SDL Game Object Cleaned \n";
 }
