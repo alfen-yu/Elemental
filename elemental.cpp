@@ -21,8 +21,8 @@ int main(int argc, char *args[])
             frameStart = SDL_GetTicks(); // ticks/time when the loops starts
 
             TheGame::Instance()->handleEvents();
-            TheGame::Instance()->render();
             TheGame::Instance()->update();
+            TheGame::Instance()->render();
 
             // how long it took to run the instructions "subtracted with" the ticks when the loop starts
             frameTime = SDL_GetTicks() - frameStart;

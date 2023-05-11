@@ -16,6 +16,7 @@ enum mouse_buttons
 class InputHandler
 {
 private:
+    InputHandler();
     // private functions to handle different event type 
 
     // handle keyboard events 
@@ -27,10 +28,7 @@ private:
     void onMouseButtonDown(SDL_Event &event);
     void onMouseButtonUp(SDL_Event &event);
 
-    
-
     Vector2D *mousePosition;
-    InputHandler();
 
     static InputHandler *inputInstance;
 
@@ -38,6 +36,7 @@ private:
 
     std::vector<bool> mouseButtonStates; // for controlling mouse button actions
 
+    ~InputHandler();
 public:
     static InputHandler *Instance()
     {
@@ -51,18 +50,14 @@ public:
     void update();
 
     // handles the state of the mouse buttons
-    bool getMouseButtonStates(int buttonNumber)
-    {
-        return mouseButtonStates[buttonNumber];
-    }
+    bool getMouseButtonStates(int buttonNumber);
 
     // for keyboard key checking 
     bool isKeyDown(SDL_Scancode key);
 
-    Vector2D* getMousePosition() { return mousePosition; }
+    Vector2D* getMousePosition();
 
     void clean();
-    ~InputHandler();
 
 };
 

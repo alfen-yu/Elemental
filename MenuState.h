@@ -4,6 +4,7 @@
 #include "GameObject.h"
 #include "Game.h"
 #include "MenuButtons.h"
+#include <vector>
 
 class MenuState: public GameState {
     private:

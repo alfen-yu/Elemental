@@ -20,7 +20,6 @@ bool Game::init(const char *title, int xpos, int ypos, int width, int height, in
             gameStateMachine = new GameStateMachine();
             gameStateMachine->changeState(new MenuState());
 
-
             if (!TheTextureManager::Instance()->load("assests/gameImages/NPCS/Pet Cats Pack/Cat-1/Cat-1-Run.png",
                                                      "cat", renderer))
             {
@@ -79,10 +78,10 @@ void Game::render()
     gameStateMachine->render();
     //     // loops through all the objects and create them according to their id
     //     // the loop doesnt care what the type of object is, it just creates it
-        // for (std::vector<GameObject *>::size_type i = 0; i != gameObjects.size(); i++)
-        // {
-        //     gameObjects[i]->draw();
-        // }
+    for (std::vector<GameObject *>::size_type i = 0; i != gameObjects.size(); i++)
+    {
+        gameObjects[i]->draw();
+    }
     SDL_RenderPresent(renderer); // presents the color on the screen
     // }
     // else
@@ -93,10 +92,10 @@ void Game::render()
 
 void Game::update()
 {
-    // for (std::vector<GameObject *>::size_type i = 0; i != gameObjects.size(); i++)
-    // {
-    //     gameObjects[i]->update();
-    // }
+    for (std::vector<GameObject *>::size_type i = 0; i != gameObjects.size(); i++)
+    {
+        gameObjects[i]->update();
+    }
     gameStateMachine->update();
 }
 

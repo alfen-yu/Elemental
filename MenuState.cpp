@@ -13,7 +13,7 @@ void MenuState::exitFromMenu() {
 
 void MenuState::update()
 {
-    for (int i = 0; i < gameObjects.size(); i++)
+    for (int i = 0; i < 3; i++)
     {
         gameObjects[i]->update();
     }
