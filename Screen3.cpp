@@ -10,14 +10,16 @@ const std::string Screen3::screenID = "Screen3";
 // fourth screen y top: 469
 // fourth screen y bottom: 538
 
+void Screen3::fourthScreenTransition() {
+    if ((player->getPosition().getX() <= -56) &&
+        player->getPosition().getY() >= 469 && player->getPosition().getY() <= 538)
+    {
+        TheGame::Instance()->getStateMachine()->changeState(new Screen4() );
+    }
+}
 
-// void Screen3::fourthScreenTransition() {
-//     if ((player->getPosition().getX() >= 450 && player->getPosition().getX() <= 724) &&
-//         player->getPosition().getY() >= 680)
-//     {
-//         TheGame::Instance()->getStateMachine()->changeState( new Screen2() ); 
-//     }
-// }
+
+// entering girl's house coordinates: (702, 250), (770, 250)
 
 void Screen3::update()
 {
@@ -26,6 +28,7 @@ void Screen3::update()
         gameObjects[i]->update();
     }
     player->getPosition().printXAndY();
+    Screen3::fourthScreenTransition();
 }
 
 void Screen3::render()
@@ -47,7 +50,7 @@ bool Screen3::onEnter()
         return false;
     }
 
-    GameObject *screenThree = new SDLGameObject(new LoaderParams(0, 0, 1034, 690, 1380, 705, "screen3"));
+    GameObject *screenThree = new SDLGameObject(new LoaderParams(0, 0, 1381, 790, 1380, 715, "screen3"));
     player = new Player(new LoaderParams(707, 690, 137, 206.1, 60, 89, "hero", 3));
 
     gameObjects.push_back(screenThree);

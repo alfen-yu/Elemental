@@ -82,7 +82,6 @@ bool Screen2::onEnter()
     {
         return false;
     }
-    // TheTextureManager::Instance()->load("assests/gameImages/Elements/tooltip Cg.png", "tpChlorine", TheGame::Instance()->getRenderer());
 
     GameObject *screenTwo = new SDLGameObject(new LoaderParams(0, 0, 1380, 780, 1370, 705, "screen2"));
     player = new Player(new LoaderParams(420, 0, 137, 206.1, 60, 89, "hero"));

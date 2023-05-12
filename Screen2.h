@@ -36,6 +36,7 @@ class Screen2 : public GameState {
     void thirdScreenTransition();
     bool chlorineToolTip();
     void pickupChlorine();
+    
     ~Screen2(){}
 };
 

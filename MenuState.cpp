@@ -4,7 +4,7 @@ const std::string MenuState::menuID = "MENU";
 
 void MenuState::menuToPlay()
 {
-    TheGame::Instance()->getStateMachine()->changeState(new Screen2());
+    TheGame::Instance()->getStateMachine()->changeState(new Screen4());
 }
 
 void MenuState::exitFromMenu()
