@@ -4,7 +4,7 @@ const std::string MenuState::menuID = "MENU";
 
 void MenuState::menuToPlay()
 {
-    TheGame::Instance()->getStateMachine()->changeState(new Screen2());
+    TheGame::Instance()->getStateMachine()->changeState(new PlayState());
 }
 
 void MenuState::exitFromMenu()
@@ -31,12 +31,12 @@ void MenuState::render()
 
 bool MenuState::onEnter()
 {
-    if (!TheTextureManager::Instance()->load("assests/gameImages/MainGame Images/Start Game picture.png", "background", TheGame::Instance()->getRenderer()))
+    if (!TheTextureManager::Instance()->load("assests/gameImages/MainGame Images/Start Game picture.png", "openingscreen", TheGame::Instance()->getRenderer()))
     {
         return false;
     }
 
-    if (!TheTextureManager::Instance()->load("assests/gameImages/MainGame Images/Elemental logo.png", "logo", TheGame::Instance()->getRenderer()))
+    if (!TheTextureManager::Instance()->load("assests/gameImages/MainGame Images/Elemental logo.png", "elementallogo", TheGame::Instance()->getRenderer()))
     {
         return false;
     }
@@ -63,15 +63,15 @@ bool MenuState::onEnter()
         return false;
     }
 
-    GameObject *background = new SDLGameObject(new LoaderParams(0, 0, 1380, 780, 1366, 768, "background"));
-    GameObject *logo = new SDLGameObject(new LoaderParams(0, 0, 1380, 780, 1366, 768, "logo"));
+    GameObject *openingScreen = new SDLGameObject(new LoaderParams(0, 0, 1380, 780, 1366, 768, "openingscreen"));
+    GameObject *elementalLogo = new SDLGameObject(new LoaderParams(0, 0, 1380, 780, 1366, 768, "elementallogo"));
     GameObject *playButton = new MenuButtons(new LoaderParams(100, 250, 223, 68, 223, 68, "playbutton"), menuToPlay);
     GameObject *creditsButton = new MenuButtons(new LoaderParams(100, 350, 223, 68, 223, 68, "credits"), menuToPlay);
     GameObject *manualButton = new MenuButtons(new LoaderParams(100, 450, 223, 68, 223, 68, "manual"), menuToPlay);
     GameObject *exitButton = new MenuButtons(new LoaderParams(100, 550, 223, 68, 223, 68, "exitbutton"), exitFromMenu);
 
-    gameObjects.push_back(background);
-    gameObjects.push_back(logo);
+    gameObjects.push_back(openingScreen);
+    gameObjects.push_back(elementalLogo);
     gameObjects.push_back(playButton);
     gameObjects.push_back(creditsButton);
     gameObjects.push_back(manualButton);
@@ -90,10 +90,10 @@ bool MenuState::onExit()
     gameObjects.clear();
     TheTextureManager::Instance()->clearFromTextureMap("playbutton");
     TheTextureManager::Instance()->clearFromTextureMap("exitbutton");
-    TheTextureManager::Instance()->clearFromTextureMap("logo");
+    TheTextureManager::Instance()->clearFromTextureMap("elementallogo");
     TheTextureManager::Instance()->clearFromTextureMap("manual");
     TheTextureManager::Instance()->clearFromTextureMap("credits");
-    TheTextureManager::Instance()->clearFromTextureMap("background");
+    TheTextureManager::Instance()->clearFromTextureMap("openingscreen");
 
     std::cout << "Exiting Menu State \n";
     return true;

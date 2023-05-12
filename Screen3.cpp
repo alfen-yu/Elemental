@@ -38,7 +38,7 @@ void Screen3::render()
 
 bool Screen3::onEnter()
 {
-    if (!TheTextureManager::Instance()->load("assests/gameImages/MainGame Images/mainImage3.png", "background", TheGame::Instance()->getRenderer()))
+    if (!TheTextureManager::Instance()->load("assests/gameImages/MainGame Images/mainImage3.png", "screen3", TheGame::Instance()->getRenderer()))
     {
         return false;
     }
@@ -47,10 +47,10 @@ bool Screen3::onEnter()
         return false;
     }
 
-    GameObject *background = new SDLGameObject(new LoaderParams(0, 0, 1034, 690, 1380, 705, "background"));
+    GameObject *screenThree = new SDLGameObject(new LoaderParams(0, 0, 1034, 690, 1380, 705, "screen3"));
     player = new Player(new LoaderParams(707, 690, 137, 206.1, 60, 89, "hero", 3));
 
-    gameObjects.push_back(background);
+    gameObjects.push_back(screenThree);
     gameObjects.push_back(player);
 
     return true;
@@ -65,6 +65,6 @@ bool Screen3::onExit()
 
     gameObjects.clear();
 
-    TheTextureManager::Instance()->clearFromTextureMap("background");
+    TheTextureManager::Instance()->clearFromTextureMap("screen3");
     TheTextureManager::Instance()->clearFromTextureMap("hero");
 }

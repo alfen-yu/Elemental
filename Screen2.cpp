@@ -5,6 +5,8 @@ const std::string Screen2::screenID = "Screen2";
 // Element picking coords: x: (809, 1141)
 // y = (270, 1057)
 
+
+
 void Screen2::thirdScreenTransition()
 {
     if ((player->getPosition().getX() >= 441 && player->getPosition().getX() <= 512) &&
@@ -22,8 +24,6 @@ bool Screen2::chlorineToolTip()
         {
             return false;
         }
-        // GameObject *chlorineTT = new SDLGameObject(new LoaderParams(396, 959, 439, 170, 200, 170, "tpChlorine"));
-        // gameObjects.push_back(chlorineTT);
     }
 }
 
@@ -49,7 +49,7 @@ void Screen2::render()
 
 bool Screen2::onEnter()
 {
-    if (!TheTextureManager::Instance()->load("assests/gameImages/MainGame Images/mainScreen2.png", "background", TheGame::Instance()->getRenderer()))
+    if (!TheTextureManager::Instance()->load("assests/gameImages/MainGame Images/mainScreen2.png", "screen2", TheGame::Instance()->getRenderer()))
     {
         return false;
     }
@@ -59,11 +59,11 @@ bool Screen2::onEnter()
     }
     // TheTextureManager::Instance()->load("assests/gameImages/Elements/tooltip Cg.png", "tpChlorine", TheGame::Instance()->getRenderer());
 
-    GameObject *background = new SDLGameObject(new LoaderParams(0, 0, 1380, 780, 1370, 705, "background"));
+    GameObject *screenTwo = new SDLGameObject(new LoaderParams(0, 0, 1380, 780, 1370, 705, "screen2"));
     player = new Player(new LoaderParams(420, 0, 137, 206.1, 60, 89, "hero"));
     GameObject *chlorineTT = new SDLGameObject(new LoaderParams(947, 360, 439, 170, 170, 80, "tpChlorine"));
 
-    gameObjects.push_back(background);
+    gameObjects.push_back(screenTwo);
     gameObjects.push_back(player);
     gameObjects.push_back(chlorineTT);
 
@@ -79,7 +79,7 @@ bool Screen2::onExit()
 
     gameObjects.clear();
 
-    TheTextureManager::Instance()->clearFromTextureMap("background");
+    TheTextureManager::Instance()->clearFromTextureMap("screen2");
     TheTextureManager::Instance()->clearFromTextureMap("hero");
     TextureManager::Instance()->clearFromTextureMap("tpChlorine");
 }

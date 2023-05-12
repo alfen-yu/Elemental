@@ -6,6 +6,7 @@
 #include "Game.h"
 #include "Player.h"
 #include "Screen2.h"
+#include "Bag.h"
 
 class PlayState : public GameState {
     private:

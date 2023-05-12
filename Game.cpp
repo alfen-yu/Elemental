@@ -20,18 +20,6 @@ bool Game::init(const char *title, int xpos, int ypos, int width, int height, in
             gameStateMachine = new GameStateMachine();
             gameStateMachine->changeState(new MenuState());
 
-            if (!TheTextureManager::Instance()->load("assests/gameImages/NPCS/Pet Cats Pack/Cat-1/Cat-1-Run.png",
-                                                     "cat", renderer))
-            {
-                return false;
-            }
-            // if (!TheTextureManager::Instance()->load("assests/gameImages/main.jpg",
-            //                                          "background", renderer))
-            // {
-            //     return false;
-            // }
-            // gameObjects.push_back(new Player(new LoaderParams(0, 768 / 2, 64, 64, 64 * 1.1, 64 * 1.1, "hero")));
-            // gameObjects.push_back(new Cat(new LoaderParams(0, 470, 50, 50, 120, 120, "cat")));
         }
         else
         {
