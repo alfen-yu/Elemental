@@ -5,8 +5,6 @@ const std::string Screen2::screenID = "Screen2";
 // Element picking coords: x: (809, 1141)
 // y = (270, 1057)
 
-
-
 void Screen2::thirdScreenTransition()
 {
     if ((player->getPosition().getX() >= 441 && player->getPosition().getX() <= 512) &&
@@ -27,6 +25,32 @@ bool Screen2::chlorineToolTip()
     }
 }
 
+void Screen2::pickupChlorine()
+{
+    static bool chlorinePickedUp = false;
+
+    if (!chlorinePickedUp && (player->getPosition().getX() >= 940 && player->getPosition().getX() <= 1000) &&
+        (player->getPosition().getY() >= 345 && player->getPosition().getY() <= 420))
+    {
+        if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_SPACE))
+        {
+            chlorinePickedUp = true;
+
+            if (chlorineTT != nullptr)
+            {
+                auto it = std::remove_if(gameObjects.begin(), gameObjects.end(),
+                                         [this](GameObject *obj)
+                                         { return obj == chlorineTT; });
+                gameObjects.erase(it, gameObjects.end());
+                delete chlorineTT;
+                chlorineTT = nullptr;
+            }
+
+            TheTextureManager::Instance()->load("assests/gameImages/MainGame Images/chlorineGirl.png", "screen2", TheGame::Instance()->getRenderer());
+        }
+    }
+}
+
 void Screen2::update()
 {
     for (int i = 0; i < gameObjects.size(); i++)
@@ -36,7 +60,8 @@ void Screen2::update()
 
     Screen2::chlorineToolTip();
     Screen2::thirdScreenTransition();
-    player->getPosition().printXAndY();
+    Screen2::pickupChlorine();
+    // player->getPosition().printXAndY();
 }
 
 void Screen2::render()
@@ -61,7 +86,7 @@ bool Screen2::onEnter()
 
     GameObject *screenTwo = new SDLGameObject(new LoaderParams(0, 0, 1380, 780, 1370, 705, "screen2"));
     player = new Player(new LoaderParams(420, 0, 137, 206.1, 60, 89, "hero"));
-    GameObject *chlorineTT = new SDLGameObject(new LoaderParams(947, 360, 439, 170, 170, 80, "tpChlorine"));
+    chlorineTT = new SDLGameObject(new LoaderParams(947, 360, 439, 170, 170, 80, "tpChlorine"));
 
     gameObjects.push_back(screenTwo);
     gameObjects.push_back(player);
@@ -76,10 +101,11 @@ bool Screen2::onExit()
     {
         gameObjects[i]->clean();
     }
+    // delete chlorineTT;
+    // chlorineTT = nullptr;
 
     gameObjects.clear();
 
     TheTextureManager::Instance()->clearFromTextureMap("screen2");
     TheTextureManager::Instance()->clearFromTextureMap("hero");
-    TextureManager::Instance()->clearFromTextureMap("tpChlorine");
 }

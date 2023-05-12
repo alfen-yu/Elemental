@@ -5,7 +5,10 @@
 #include "GameObject.h"
 #include "Game.h"
 #include <iostream>
+#include "InputHandler.h"
+#include "SDLGameObject.h"
 #include "Screen3.h"
+#include <algorithm>
 
 class Screen2 : public GameState {
     private:
@@ -16,8 +19,10 @@ class Screen2 : public GameState {
         std::vector<GameObject*> gameObjects; 
 
         GameObject* player;
+        GameObject *chlorineTT;
         
     public:
+    Screen2(){}
     virtual void update();
     virtual void render();
 
@@ -30,6 +35,8 @@ class Screen2 : public GameState {
 
     void thirdScreenTransition();
     bool chlorineToolTip();
+    void pickupChlorine();
+    ~Screen2(){}
 };
 
 #endif //{SECOND SCREEN OF PLAY STATE}

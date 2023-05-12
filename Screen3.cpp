@@ -11,7 +11,7 @@ const std::string Screen3::screenID = "Screen3";
 // fourth screen y bottom: 538
 
 
-// void Screen3::thirdScreenTransition() {
+// void Screen3::fourthScreenTransition() {
 //     if ((player->getPosition().getX() >= 450 && player->getPosition().getX() <= 724) &&
 //         player->getPosition().getY() >= 680)
 //     {
@@ -38,7 +38,7 @@ void Screen3::render()
 
 bool Screen3::onEnter()
 {
-    if (!TheTextureManager::Instance()->load("assests/gameImages/MainGame Images/mainImage3.png", "screen3", TheGame::Instance()->getRenderer()))
+    if (!TheTextureManager::Instance()->load("assests/gameImages/MainGame Images/gameScreen3.png", "screen3", TheGame::Instance()->getRenderer()))
     {
         return false;
     }
