@@ -16,6 +16,7 @@ class Screen4 : public GameState {
 
         GameObject* player;
         GameObject* sulfurTT;
+        GameObject* sulfurElem;
         
     public:
     Screen4(){}
@@ -30,9 +31,9 @@ class Screen4 : public GameState {
         return screenID;
     }
 
-    void lastScreenTransition();
-    // bool sulfurToolTip();
-    // void pickupSulfur();
+    // void lastScreenTransition();
+    bool sulfurToolTip();
+    void pickupSulfur();
 
     ~Screen4(){}
 };
