@@ -4,7 +4,7 @@ const std::string MenuState::menuID = "MENU";
 
 void MenuState::menuToPlay()
 {
-    TheGame::Instance()->getStateMachine()->changeState(new PlayState());
+    TheGame::Instance()->getStateMachine()->changeState(new Screen2());
 }
 
 void MenuState::exitFromMenu()
@@ -65,10 +65,10 @@ bool MenuState::onEnter()
 
     GameObject *background = new SDLGameObject(new LoaderParams(0, 0, 1380, 780, 1366, 768, "background"));
     GameObject *logo = new SDLGameObject(new LoaderParams(0, 0, 1380, 780, 1366, 768, "logo"));
-    GameObject *playButton = new MenuButtons(new LoaderParams(100, 300, 223, 68, 223, 68, "playbutton"), menuToPlay);
-    GameObject *creditsButton = new MenuButtons(new LoaderParams(100, 400, 223, 68, 223, 68, "credits"), menuToPlay);
-    GameObject *manualButton = new MenuButtons(new LoaderParams(100, 500, 223, 68, 223, 68, "manual"), menuToPlay);
-    GameObject *exitButton = new MenuButtons(new LoaderParams(100, 600, 223, 68, 223, 68, "exitbutton"), exitFromMenu);
+    GameObject *playButton = new MenuButtons(new LoaderParams(100, 250, 223, 68, 223, 68, "playbutton"), menuToPlay);
+    GameObject *creditsButton = new MenuButtons(new LoaderParams(100, 350, 223, 68, 223, 68, "credits"), menuToPlay);
+    GameObject *manualButton = new MenuButtons(new LoaderParams(100, 450, 223, 68, 223, 68, "manual"), menuToPlay);
+    GameObject *exitButton = new MenuButtons(new LoaderParams(100, 550, 223, 68, 223, 68, "exitbutton"), exitFromMenu);
 
     gameObjects.push_back(background);
     gameObjects.push_back(logo);

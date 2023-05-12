@@ -1,6 +1,8 @@
 #ifndef __Cat__
 #define __Cat__
 #include "SDLGameObject.h"
+#include "TextureManager.h"
+#include "Game.h"
 
 class Cat : public SDLGameObject
 {

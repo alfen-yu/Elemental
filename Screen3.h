@@ -1,13 +1,12 @@
-#ifndef __Screen2__
-#define __Screen2__
+#ifndef __Screen3__
+#define __Screen3__
 
 #include "GameState.h"
 #include "GameObject.h"
 #include "Game.h"
 #include <iostream>
-#include "Screen3.h"
 
-class Screen2 : public GameState {
+class Screen3 : public GameState {
     private:
         static const std::string screenID;
 
@@ -28,8 +27,7 @@ class Screen2 : public GameState {
         return screenID;
     }
 
-    void thirdScreenTransition();
-    bool chlorineToolTip();
+    // void fourthScreenTransition();
 };
 
-#endif //{SECOND SCREEN OF PLAY STATE}
+#endif //{THIRD SCREEN OF PLAY STATE}

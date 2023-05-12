@@ -5,6 +5,7 @@
 #include "Game.h"
 #include "MenuButtons.h"
 #include <vector>
+#include "Screen2.h"
 
 class MenuState: public GameState {
     private:

@@ -15,6 +15,11 @@ public:
     float getX() { return x; }
     float getY() { return y; }
 
+    float printXAndY() {
+        std::cout << "Position x: " << x << std::endl;
+        std::cout << "Postion y: " << y << std::endl;
+    }
+
     // setter functions for the x and y values
     void setX(float sx) { x = sx; }
     void setY(float sy) { y = sy; }

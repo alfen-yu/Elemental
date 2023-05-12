@@ -72,7 +72,9 @@ bool InputHandler::getMouseButtonStates(int buttonNumber)
 void InputHandler::onMouseMove(SDL_Event &event)
 {
     mousePosition->setX(event.motion.x);
+    // std::cout << "Positon x: " << mousePosition->getX() << std::endl;
     mousePosition->setY(event.motion.y);
+    // std::cout << "Position y: " << mousePosition->getY() << std::endl;
 }
 
 void InputHandler::onKeyDown(SDL_Event &event)

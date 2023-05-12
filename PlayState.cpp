@@ -4,10 +4,10 @@ const std::string PlayState::playID = "PLAY";
 
 void PlayState::secondScreenTransition()
 {
-    if ((player->getPosition().getX() >= 570 && player->getPosition().getX() <= 730) &&
+    if ((player->getPosition().getX() >= 558 && player->getPosition().getX() <= 723) &&
         player->getPosition().getY() >= 680)
     {
-        TheGame::Instance()->getStateMachine()->pushState( new Screen2() ); 
+        TheGame::Instance()->getStateMachine()->changeState( new Screen2() ); 
     }
 }
 
@@ -19,6 +19,7 @@ void PlayState::update()
     }
 
     PlayState::secondScreenTransition();
+    player->getPosition().printXAndY();
 
 }
 
@@ -63,6 +64,7 @@ bool PlayState::onExit()
     }
 
     gameObjects.clear();
+    
     TheTextureManager::Instance()->clearFromTextureMap("hero");
     TheTextureManager::Instance()->clearFromTextureMap("cat");
     TheTextureManager::Instance()->clearFromTextureMap("background");
