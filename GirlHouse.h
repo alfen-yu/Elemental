@@ -1,14 +1,12 @@
-#ifndef __Screen3__
-#define __Screen3__
+#ifndef __GirlHouse__
+#define __GirlHouse__
 
 #include "GameState.h"
 #include "GameObject.h"
 #include "Game.h"
 #include <iostream>
-#include "Screen4.h"
-#include "GirlHouse.h"
 
-class Screen3 : public GameState {
+class GirlHouse : public GameState {
     private:
         static const std::string screenID;
 
@@ -17,11 +15,9 @@ class Screen3 : public GameState {
         std::vector<GameObject*> gameObjects; 
 
         GameObject* player;
-        GameObject* mercuryTT;
-        GameObject* mercuryElem;
-        
+    
     public:
-    Screen3(){}
+    GirlHouse(){}
 
     virtual void update();
     virtual void render();
@@ -33,12 +29,9 @@ class Screen3 : public GameState {
         return screenID;
     }
 
-    void fourthScreenTransition();
-    bool mercuryToolTip();
-    void pickupMercury();
-    void enterHouse();
+    void backToScreen();
 
-    ~Screen3(){}
+    ~GirlHouse(){}
 };
 
-#endif //{THIRD SCREEN OF PLAY STATE}
+#endif //{GIRL HOUSE SCREEN OF PLAY STATE}
