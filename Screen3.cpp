@@ -26,7 +26,7 @@ bool Screen3::mercuryToolTip()
 {
     if ((player->getPosition().getX() >= 856) && (player->getPosition().getY() >= 359 && player->getPosition().getY() <= 534))
     {
-        if (!TheTextureManager::Instance()->load("assests/gameImages/Elements/tooltip S.png", "tpMercury", TheGame::Instance()->getRenderer()))
+        if (!TheTextureManager::Instance()->load("assests/gameImages/Elements/tooltip M.png", "tpMercury", TheGame::Instance()->getRenderer()))
         {
             return false;
         }
@@ -111,7 +111,7 @@ bool Screen3::onEnter()
     GameObject *screenThree = new SDLGameObject(new LoaderParams(0, 0, 1381, 790, 1380, 715, "screen3"));
     player = new Player(new LoaderParams(707, 650, 137, 206.1, 60, 89, "hero", 3));
     mercuryElem = new SDLGameObject(new LoaderParams(1050, 350, 168, 151, 140, 120, "mercury"));
-    mercuryTT = new SDLGameObject(new LoaderParams(1100, 310, 439, 170, 170, 80, "tpMercury"));
+    mercuryTT = new SDLGameObject(new LoaderParams(1000, 310, 439, 170, 170, 80, "tpMercury"));
 
     gameObjects.push_back(screenThree);
     gameObjects.push_back(mercuryElem);

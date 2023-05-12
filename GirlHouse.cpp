@@ -3,7 +3,7 @@
 const std::string GirlHouse::screenID = "house1";
 
 void GirlHouse::backToScreen() {
-    if ((player->getPosition().getX() >= 707 && player->getPosition().getX() >= 852) && 
+    if ((player->getPosition().getX() >= 707 && player->getPosition().getX() <= 852) && 
         player->getPosition().getY() >= 615)
     {
         TheGame::Instance()->getStateMachine()->popState();
@@ -40,10 +40,10 @@ bool GirlHouse::onEnter()
         return false;
     }
 
-    GameObject *screenThree = new SDLGameObject(new LoaderParams(0, 0, 1381, 790, 1380, 715, "interior"));
-    player = new Player(new LoaderParams(707, 650, 137, 206.1, 60, 89, "hero", 3));
+    GameObject *house = new SDLGameObject(new LoaderParams(0, 0, 1381, 790, 1380, 715, "interior"));
+    player = new Player(new LoaderParams(250, 650, 137, 206.1, 60, 89, "hero", 3));
 
-    gameObjects.push_back(screenThree);
+    gameObjects.push_back(house);
     gameObjects.push_back(player);
 
     return true;
